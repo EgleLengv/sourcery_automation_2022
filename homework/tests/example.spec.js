@@ -17,7 +17,7 @@ const data = [
 
 data.forEach(version => {
   test.describe(version + ': Add', () => {
-    test('Concatenating 2 and 3 results in 23', async ({ page }) => {
+    test('1. Add 2 and 3 results in 5', async ({ page }) => {
       await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#number1Field').type('2');
@@ -28,4 +28,4 @@ data.forEach(version => {
       await expect(page.locator('#numberAnswerField')).toHaveValue('5');
     });
   });
-});
+})
