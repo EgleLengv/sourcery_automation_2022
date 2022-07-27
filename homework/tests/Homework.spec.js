@@ -34,7 +34,6 @@ data.forEach(version => {
   ;
 
     test('2. Subtract 2 from 3 results in -1', async ({ page }) => {
-      await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#number1Field').type('2');
       await page.locator('#number2Field').type('3');
@@ -45,7 +44,6 @@ data.forEach(version => {
     });
   
     test('3. Multiply 2 and 3 results in 6', async ({ page }) => {
-      await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#number1Field').type('2');
       await page.locator('#number2Field').type('3');
@@ -56,7 +54,6 @@ data.forEach(version => {
     });
 
     test('4. Divide 3 from 2 results in 1.5', async ({ page }) => {
-      await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#number1Field').type('3');
       await page.locator('#number2Field').type('2');
@@ -67,7 +64,6 @@ data.forEach(version => {
     });
 
     test('5. Concatenate a and b results in ab', async ({ page }) => {
-      await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#number1Field').type('a');
       await page.locator('#number2Field').type('b');
@@ -78,7 +74,6 @@ data.forEach(version => {
     });
 
     test('6. Division by zero results in error message', async ({ page }) => {
-      await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#number1Field').type('2');
       await page.locator('#number2Field').type('0');
@@ -89,7 +84,6 @@ data.forEach(version => {
     });
 
     test('7. Empty fields results in 0 ', async ({ page }) => {
-      await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#calculateButton').click();
   
@@ -97,7 +91,6 @@ data.forEach(version => {
     });
 
     test('8. "Clear" button results in empty answers field', async ({ page }) => {
-      await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#number1Field').type('2');
       await page.locator('#number2Field').type('0');
@@ -108,7 +101,6 @@ data.forEach(version => {
     });
 
     test('9. Add 2 and 3.5 intigers only results in 5', async ({ page }) => {
-      await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#number1Field').type('2');
       await page.locator('#number2Field').type('3.5');
@@ -120,7 +112,6 @@ data.forEach(version => {
     });
 
     test('10. Typing letter in first field results in error message', async ({ page }) => {
-      await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#number1Field').type('a');
       await page.locator('#number2Field').type('2');
