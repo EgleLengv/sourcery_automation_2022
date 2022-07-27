@@ -14,15 +14,15 @@ const data = [
   '9'
 ]
 
-
+let i = 1
 
 data.forEach(version => {
-  test.describe(version, () => {
+  test.describe(version + i, () => {
     test.beforeEach(async ({ page }) => {
       await page.goto('https://testsheepnz.github.io/BasicCalculator')
     })
 
-    test('1. Add 2 and 3 results in 5', async ({ page }) => {;
+    test(`&{i}. Add 2 and 3 results in 5`, async ({ page }) => {;
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#number1Field').type('2');
       await page.locator('#number2Field').type('3');
