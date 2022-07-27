@@ -15,10 +15,14 @@ const data = [
 ]
 
 
+
 data.forEach(version => {
-  test.describe(version + ': Add', () => {
-    test('1. Add 2 and 3 results in 5', async ({ page }) => {
-      await page.goto('https://testsheepnz.github.io/BasicCalculator');
+  test.describe(version, () => {
+    test.beforeEach(async ({ page }) => {
+      await page.goto('https://testsheepnz.github.io/BasicCalculator')
+    })
+
+    test('1. Add 2 and 3 results in 5', async ({ page }) => {;
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#number1Field').type('2');
       await page.locator('#number2Field').type('3');
@@ -27,9 +31,8 @@ data.forEach(version => {
   
       await expect(page.locator('#numberAnswerField')).toHaveValue('5');
     });
-  });
+  ;
 
-  test.describe(version + ': Subtract', () => {
     test('2. Subtract 2 from 3 results in -1', async ({ page }) => {
       await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
@@ -40,9 +43,7 @@ data.forEach(version => {
   
       await expect(page.locator('#numberAnswerField')).toHaveValue('-1');
     });
-  });
-
-  test.describe(version + ': Multiply', () => {
+  
     test('3. Multiply 2 and 3 results in 6', async ({ page }) => {
       await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
@@ -53,9 +54,7 @@ data.forEach(version => {
   
       await expect(page.locator('#numberAnswerField')).toHaveValue('6');
     });
-  });
 
-  test.describe(version + ': Divide', () => {
     test('4. Divide 3 from 2 results in 1.5', async ({ page }) => {
       await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
@@ -66,9 +65,7 @@ data.forEach(version => {
   
       await expect(page.locator('#numberAnswerField')).toHaveValue('1.5');
     });
-  });
 
-  test.describe(version + ': Concatenate', () => {
     test('5. Concatenate a and b results in ab', async ({ page }) => {
       await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
@@ -79,9 +76,7 @@ data.forEach(version => {
   
       await expect(page.locator('#numberAnswerField')).toHaveValue('ab');
     });
-  });
 
-  test.describe(version + ': Division by 0', () => {
     test('6. Division by zero results in error message', async ({ page }) => {
       await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
@@ -92,9 +87,7 @@ data.forEach(version => {
   
       await expect(page.locator('#errorMsgField')).toHaveText('Divide by zero error!');
     });
-  });
 
-  test.describe(version + ': Empty fields', () => {
     test('7. Empty fields results in 0 ', async ({ page }) => {
       await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
@@ -102,9 +95,7 @@ data.forEach(version => {
   
       await expect(page.locator('#numberAnswerField')).toHaveValue('0');
     });
-  });
 
-  test.describe(version + ': Clear', () => {
     test('8. "Clear" button results in empty answers field', async ({ page }) => {
       await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
@@ -115,10 +106,8 @@ data.forEach(version => {
   
       await expect(page.locator('#numberAnswerField')).toHaveValue('');
     });
-  });
 
-  test.describe(version + ': Add intigers only', () => {
-    test('9.Add 2 and 3.5 intigers only results in 5', async ({ page }) => {
+    test('9. Add 2 and 3.5 intigers only results in 5', async ({ page }) => {
       await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#number1Field').type('2');
@@ -129,9 +118,7 @@ data.forEach(version => {
   
       await expect(page.locator('#numberAnswerField')).toHaveValue('5');
     });
-  });
 
-  test.describe(version + ': Letter in first field', () => {
     test('10. Typing letter in first field results in error message', async ({ page }) => {
       await page.goto('https://testsheepnz.github.io/BasicCalculator');
       await page.selectOption('#selectBuild', { label: version});
