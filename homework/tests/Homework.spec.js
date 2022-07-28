@@ -14,15 +14,13 @@ const data = [
   '9'
 ]
 
-let i = 1
-
 data.forEach(version => {
-  test.describe(version + i, () => {
+  test.describe(version, () => {
     test.beforeEach(async ({ page }) => {
       await page.goto('https://testsheepnz.github.io/BasicCalculator')
     })
 
-    test(`&{i}. Add 2 and 3 results in 5`, async ({ page }) => {;
+    test('1.Add 2 and 3 results in 5', async ({ page }) => {;
       await page.selectOption('#selectBuild', { label: version});
       await page.locator('#number1Field').type('2');
       await page.locator('#number2Field').type('3');
@@ -100,15 +98,19 @@ data.forEach(version => {
       await expect(page.locator('#numberAnswerField')).toHaveValue('');
     });
 
-    test('9. Add 2 and 3.5 intigers only results in 5', async ({ page }) => {
+    test('9. Add 2 Random Numbers, mark integers only, results in Integer', async ({ page }) => {
+      const RandomNumber = Math.random()
       await page.selectOption('#selectBuild', { label: version});
-      await page.locator('#number1Field').type('2');
-      await page.locator('#number2Field').type('3.5');
+      await page.locator('#number1Field').type(`${RandomNumber}`);
+      await page.locator('#number2Field').type(`${RandomNumber}`);
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#integerSelect').click();
       await page.locator('#calculateButton').click();
-  
-      await expect(page.locator('#numberAnswerField')).toHaveValue('5');
+
+      const isAnswerAnInteger = Number.isInteger(page.locator("#numberAnswerField"));
+
+      await expect(isAnswerAnInteger).toBeTruthy;
+
     });
 
     test('10. Typing letter in first field results in error message', async ({ page }) => {
